@@ -1,0 +1,34 @@
+1.
+select * from emp where char_length(ename) = 4 and ename like ‘___N’; 
+
+2.
+select deptno,ename,sal,job,sal+nvl(comm,0) from emp e where  2 = (select
+count(distinct sal+nvl(comm,0)) from emp where
+(e.sal+nvl(comm.,0))<(sal+nvl(comm.,0)); //SQL
+
+select deptno,ename,sal,job,sal+zeroifnull(comm) from emp e where  2 = (select
+count(distinct sal+zeroifnull(comm)) from emp where
+(e.sal+zeroifnull(comm))<(sal+zeroifnull(comm)); //TERADATA
+
+3.
+select ename from emp where add_months(hiredate,240) > '31-DEC-89';
+(OR)
+select ename from emp
+where add_months(hiredate,240) > to_date(’31-DEC-89’,’DD-MON-RR’); //SQL
+
+select ename from emp where hiredate+interval'20' year > '31-DEC-89'; //TERADATA
+
+4.
+SELECT city, count(*) as num_employees, MAX(HourlyRate), 
+FROM Starbucks_Employees JOIN Starbucks_Stores
+ON Starbucks_Employees.StoreID = Starbucks_Stores.store_id
+GROUP BY city;
+
+5.
+select * from emp where deptno in (select deptno from dept where dept.loc ='NEW YORK') and empno in (select empno from emp e,salgrade s where e.sal between s.losal and s.hisal and s.grade in (3,4,5) ) and job != 'PRESIDENT' and sal >(select max(sal) from emp where deptno in (select deptno from dept where dept.loc = 'CHICAGO') and job in ('MANAGER','SALESMAN') and mgr not in (select empno from emp where ename = 'KING'));
+
+6.
+BTEQ
+
+7.
+MLOAD 
